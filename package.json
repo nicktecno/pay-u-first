@@ -14,7 +14,10 @@
     "fix:format": "prettier --write",
     "format": "yarn fix: format 'src/**/*.(js|ts|md|json)'",
     "lint": "yarn fix:lint src/**/*.{js,ts,md,json}",
-    "prepare": "husky install"
+
+    "prebuild": "rm -Rf ./dist",
+    "build": "babel src --extensions \".js\"--ignore \"*.spec.js,*.test.js\" --out-dir dist --copy-files",
+    "dev": "nodemon --exec babel-node -- src/index.js"
   },
   "commitlint": {
     "extends": [
@@ -27,14 +30,21 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/plugin-proposal-optional-chaining": "^7.13.12",
+    "@babel/preset-env": "^7.14.1",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-json": "^3.0.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
+    "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1"
   },
