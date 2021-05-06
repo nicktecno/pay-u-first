@@ -11,4 +11,4 @@ app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(3000)
+app.listen(process.env.SERVER_PORT)
