@@ -49,9 +49,11 @@
   },
   "dependencies": {
     "@koa/router": "^10.0.0",
+    "@prisma/client": "2.22.1",
     "dotenv": "^9.0.0",
     "dotenv-safe": "^8.2.0",
     "koa": "^2.13.1",
-    "koa-bodyparser": "^4.3.0"
+    "koa-bodyparser": "^4.3.0",
+    "prisma": "2.22.1"
   }
 }
