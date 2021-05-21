@@ -5,12 +5,15 @@ import { prisma } from '~/data'
 export const login = async ctx => {
   try {
     const { email, password } = ctx.request.body
-    //Pegando o primeiro item da array, visto que é findMany e volta uma array de users
-    const [user] = await prisma.user.findMany({
-      where: { email, password },
+
+    const user = await prisma.user.findUnique({
+      where: { email },
     })
     //relembrando que esse email e senha é shorthand (email:email destruct do ctx)
-    if (!user) {
+
+    const passwordEqual = await bcrypt.compare(password, user.password)
+
+    if (!user || !passwordEqual) {
       ctx.status = 404
       return
     }
