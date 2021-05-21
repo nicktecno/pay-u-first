@@ -7,7 +7,6 @@ const app = new Koa()
 
 app.use(bodyParser())
 
-app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
 

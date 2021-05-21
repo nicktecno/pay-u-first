@@ -1,4 +1,29 @@
+import jwt from 'jsonwebtoken'
 import { prisma } from '~/data'
+
+export const login = async ctx => {
+  try {
+    const { email, password } = ctx.request.body
+    //Pegando o primeiro item da array, visto que é findMany e volta uma array de users
+    const [user] = await prisma.user.findMany({
+      where: { email, password },
+    })
+    //relembrando que esse email e senha é shorthand (email:email destruct do ctx)
+    if (!user) {
+      ctx.status = 404
+      return
+    }
+
+    const token = jwt.sign({ sub: user.id }, process.env.JWT_SECRET)
+
+    // user.token = token Poderia ser essa abordagen ou a debaixo, uma dentro do user e a debaixo como um objeto separado
+    ctx.body = { user, token }
+  } catch (error) {
+    ctx.status = 500
+    ctx.body = 'Ops! Algo deu errado, tente novamente'
+    return
+  }
+}
 
 export const list = async ctx => {
   try {
