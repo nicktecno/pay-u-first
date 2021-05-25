@@ -14,7 +14,13 @@ export const login = async ctx => {
     const user = await prisma.user.findUnique({
       where: { email },
     })
+
     //relembrando que esse email e senha é shorthand (email:email destruct do ctx)
+
+    if (!user) {
+      ctx.status = 404
+      return
+    }
 
     const passwordEqual = await bcrypt.compare(password, user.password)
 

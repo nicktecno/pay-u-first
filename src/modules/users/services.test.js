@@ -1,6 +1,6 @@
 import { decodeBasicToken } from './services'
 
-describe('User module', () => {
+describe('User services', () => {
   it('should return credentials by basic authentication token', () => {
     //prepare
     const email = 'nick.tecno@gmail.com'
@@ -16,9 +16,7 @@ describe('User module', () => {
 
     expect(result).toEqual([email, password])
   })
-})
 
-describe('User module', () => {
   it('should throw new error when token is not Basic Type', () => {
     //prepare
     const email = 'nick.tecno@gmail.com'
