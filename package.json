@@ -9,6 +9,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "db:migrate":"yarn prisma migrate dev --preview-feature",
     "fix": "run-s \"fix:* {@}\" --",
     "fix:lint": "eslint --fix --no-error-on-unmatched-pattern",
     "fix:format": "prettier --write",
