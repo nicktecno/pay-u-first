@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import './model'
 
 import { prisma } from '~/data'
 
@@ -11,8 +12,8 @@ export const login = async ctx => {
       ctx.request.headers.authorization
     )
 
-    const user = await prisma.user.findUnique({
-      where: { email },
+    const { user } = await prisma.user.findUnique({
+      where: { email, password },
     })
 
     //relembrando que esse email e senha é shorthand (email:email destruct do ctx)
@@ -22,12 +23,12 @@ export const login = async ctx => {
       return
     }
 
-    const passwordEqual = await bcrypt.compare(password, user.password)
+    // const passwordEqual = await bcrypt.compare(password, user.password)
 
-    if (!user || !passwordEqual) {
-      ctx.status = 404
-      return
-    }
+    // if (!user || !passwordEqual) {
+    //   ctx.status = 404
+    //   return
+    // }
 
     const token = jwt.sign({ sub: user.id }, process.env.JWT_SECRET)
     ctx.body = { user, token }

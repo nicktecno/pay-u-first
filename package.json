@@ -9,7 +9,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "db:migrate":"yarn prisma migrate dev --preview-feature",
+    "db:migrate": "yarn prisma migrate dev --preview-feature",
     "fix": "run-s \"fix:* {@}\" --",
     "fix:lint": "eslint --fix --no-error-on-unmatched-pattern",
     "fix:format": "prettier --write",
@@ -60,6 +60,7 @@
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
-    "prisma": "2.22.1"
+    "prisma": "2.22.1",
+    "ramda": "^0.27.1"
   }
 }
