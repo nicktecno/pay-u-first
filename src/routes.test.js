@@ -36,7 +36,7 @@ describe('User routes', () => {
   })
   it('should return logged in user by correct credentials', async () => {
     //prepare
-    const email = 'nick.tecno3@gmail.com'
+    const email = 'nick.tecno@gmail.com'
     const password = '123456'
 
     const saltRounds = 10
@@ -54,7 +54,7 @@ describe('User routes', () => {
     expect(result.status).toBe(200)
     expect(result.body.user).toBeTruthy()
     expect(result.body.token).toBeTruthy()
-    expect(result.body.user.name).toBeTruthy()
+
     expect(result.body.user.id).toBe(user.id)
     expect(result.body.user.email).toBe(email)
     expect(result.body.user.password).toBeFalsy()
